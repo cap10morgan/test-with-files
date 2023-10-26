@@ -5,7 +5,7 @@
 
 (defn delete-file-recursively [f]
   (let [f (io/file f)]
-    (if (.isDirectory f)
+    (when (.isDirectory f)
       (doseq [child (.listFiles f)]
         (delete-file-recursively child)))
     (io/delete-file f)))
