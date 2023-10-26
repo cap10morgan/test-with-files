@@ -21,7 +21,7 @@
                      true
                      (::delete-dir opts))]
     `(let [directory# (io/file (str (Files/createTempDirectory
-                                      "temp" (make-array FileAttribute 0))))
+                                     "temp" (make-array FileAttribute 0))))
            ~path-var (str directory#)
            result# (do ~@body)]
        (when ~delete-dir
@@ -36,9 +36,9 @@
 
 (defmacro with-files [parent-path-var files & body]
   `(with-tmp-dir ~parent-path-var
-                 (create-files ~parent-path-var ~(zipmap (take-nth 2 files)
-                                                         (take-nth 2 (next files))))
-                 ~@body))
+     (create-files ~parent-path-var ~(zipmap (take-nth 2 files)
+                                             (take-nth 2 (next files))))
+     ~@body))
 
 (defmacro with-resources [parent-path-var files & body]
   `(let [~parent-path-var (str (java.util.UUID/randomUUID) "/")
