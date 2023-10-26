@@ -8,7 +8,7 @@
     (when (.isDirectory f)
       (doseq [child (.listFiles f)]
         (delete-file-recursively child)))
-    (io/delete-file f)))
+    (io/delete-file f :silently)))
 
 (defmacro with-tmp-dir
   [path-var & body]
